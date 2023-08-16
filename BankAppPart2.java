@@ -18,10 +18,14 @@ public class BankAppPart2 {
         final String DELETE_ACC = "❌ Delete account";
 
         String screen = DASHBOARD;
-        do{
-            final String ERROR_MSG = String.format("\t%s%s%s\n", COLOR_RED_BOLD, "%s", RESET);
-            final String SUCCESS_MSG = String.format("\t%s%s%s\n",COLOR_BLUE_BOLD, "%s" , RESET);
 
+        String[][] customer = new String[0][];
+        
+        final String ERROR_MSG = String.format("\t%s%s%s\n", COLOR_RED_BOLD, "%s", RESET);
+        final String SUCCESS_MSG = String.format("\t%s%s%s\n",COLOR_BLUE_BOLD, "%s" , RESET);
+        
+
+        do{
             final String APP_TITLE = String.format("%s%s%s",COLOR_BLUE_BOLD,screen,RESET);
             System.out.println(CLEAR);
             System.out.println("\t"+APP_TITLE+"\n");
@@ -52,7 +56,34 @@ public class BankAppPart2 {
                 break;
 
                 case CREATE_NEW_ACC:
-                    
+
+                    String id;
+                    String name;
+                    int deposit;
+                    boolean valid;
+
+                System.out.printf("\tNew Customer ID: SDB-%05d \n", (customer.length + 1));
+
+                do{
+                    valid = true;
+                    System.out.print("\tEnter Customer Name: ");
+                    name = SCANNER.nextLine().strip();
+                    if (name.isBlank()){
+                        System.out.printf("\t%sName can't be empty%s\n", COLOR_RED_BOLD, RESET);
+                        valid = false;
+                        continue;
+                    }
+                    for (int i = 0; i < name.length(); i++) {
+                        if (!(Character.isLetter(name.charAt(i)) || 
+                            Character.isSpaceChar(name.charAt(i))) ) {
+                            System.out.printf("\t%sInvalid Name%s\n", COLOR_RED_BOLD, RESET);
+                            valid = false;
+                            break;
+                        }
+                    }
+                }while(!valid);
+
+                
 
 
             }
