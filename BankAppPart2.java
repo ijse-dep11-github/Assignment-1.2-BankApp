@@ -112,9 +112,6 @@ public class BankAppPart2 {
                         screen = DASHBOARD;
                     break;
 
-
-
-
             }
             
         }while (true);
