@@ -61,29 +61,58 @@ public class BankAppPart2 {
                     String name;
                     int deposit;
                     boolean valid;
+                    
+                    id = String.format("SDB-%05d",(customer.length + 1));
+                    System.out.printf("\tNew Customer ID: %s \n", id);
 
-                System.out.printf("\tNew Customer ID: SDB-%05d \n", (customer.length + 1));
-
-                do{
-                    valid = true;
-                    System.out.print("\tEnter Customer Name: ");
-                    name = SCANNER.nextLine().strip();
-                    if (name.isBlank()){
-                        System.out.printf("\t%sName can't be empty%s\n", COLOR_RED_BOLD, RESET);
-                        valid = false;
-                        continue;
-                    }
-                    for (int i = 0; i < name.length(); i++) {
-                        if (!(Character.isLetter(name.charAt(i)) || 
-                            Character.isSpaceChar(name.charAt(i))) ) {
-                            System.out.printf("\t%sInvalid Name%s\n", COLOR_RED_BOLD, RESET);
+                    do{
+                        valid = true;
+                        System.out.print("\tEnter Customer Name: ");
+                        name = SCANNER.nextLine().strip();
+                        if (name.isBlank()){
+                            System.out.printf("\t%sName can't be empty%s\n", COLOR_RED_BOLD, RESET);
                             valid = false;
-                            break;
+                            continue;
                         }
-                    }
-                }while(!valid);
+                        for (int i = 0; i < name.length(); i++) {
+                            if (!(Character.isLetter(name.charAt(i)) || 
+                                Character.isSpaceChar(name.charAt(i))) ) {
+                                System.out.printf("\t%sInvalid Name%s\n", COLOR_RED_BOLD, RESET);
+                                valid = false;
+                                break;
+                            }
+                        }
+                    }while(!valid);
 
-                
+                    do{
+                        valid = true;
+                        System.out.print("\tEnter Initial deposit : ");
+                        deposit = SCANNER.nextInt();
+                        SCANNER.nextLine();
+                        if (deposit < 5000){
+                            System.out.printf("\t%sInsufficient amount%s\n",COLOR_RED_BOLD,RESET);
+                            valid = false;
+                            continue ;
+                        }else valid = true;
+                    
+                    } while (!valid);
+
+                    String[][] tempCustomer = new String[customer.length + 1][3];
+
+                    tempCustomer[tempCustomer.length - 1][0] = id;
+                    tempCustomer[tempCustomer.length - 1][1] = name;
+                    tempCustomer[tempCustomer.length - 1][2] = deposit + "";
+
+                    customer = tempCustomer;
+
+                    System.out.println();
+                    System.out.printf(SUCCESS_MSG, String.format("%s:%s added successfully \n", id, name));
+                    System.out.print("\tDo you want to continue adding marks? (Y/n)");
+                    if (!SCANNER.nextLine().toUpperCase().strip().equals("Y"))
+                        screen = DASHBOARD;
+                    break;
+
+
 
 
             }
