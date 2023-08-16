@@ -39,17 +39,22 @@ public class BankAppPart2 {
                     int option = SCANNER.nextInt();
                     SCANNER.nextLine();
 
-                    switch (option){
-                        case 1: screen = CREATE_NEW_ACC; break;
-                        case 2: screen = DEPOSITS; break;
-                        case 3: screen = WITHDRAWALS; break;
-                        case 4: screen = TRANSFER; break;
-                        case 5: screen = PRINT; break;
-                        case 6: screen = DELETE_ACC; break;
-                        case 7: System.out.println(CLEAR); System.exit(0);
-                        default: continue;
-                    }
-                    break;
+                switch (option){
+                    case 1: screen = CREATE_NEW_ACC; break;
+                    case 2: screen = DEPOSITS; break;
+                    case 3: screen = WITHDRAWALS; break;
+                    case 4: screen = TRANSFER; break;
+                    case 5: screen = PRINT; break;
+                    case 6: screen = DELETE_ACC; break;
+                    case 7: System.out.println(CLEAR); System.exit(0);
+                    default: continue;
+                }
+                break;
+
+                case CREATE_NEW_ACC:
+                    
+
+
             }
             
         }while (true);
